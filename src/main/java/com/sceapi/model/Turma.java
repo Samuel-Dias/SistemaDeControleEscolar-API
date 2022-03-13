@@ -15,26 +15,21 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 @Entity
-public class Matricula {
+public class Turma {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Double id;
 	
 	@Column(nullable = false)
-	private Date dataMatricula;
+	private Date dataDeInicio;
 	
-	@OneToOne
-	@JoinColumn(nullable = false)
-	private Aluno aluno;
+	@Column(nullable = false)
+	private Integer vagas;
 	
 	@ManyToOne
 	@JoinColumn(nullable = false)
-	private Avaliacao avaliacao;
-	
-	@OneToOne
-	@JoinColumn(nullable = false)
-	private Turma turma;
+	private Matricula matricula;
 
 	public Double getId() {
 		return id;
@@ -44,36 +39,28 @@ public class Matricula {
 		this.id = id;
 	}
 
-	public Date getDataMatricula() {
-		return dataMatricula;
+	public Date getDataDeInicio() {
+		return dataDeInicio;
 	}
 
-	public void setDataMatricula(Date dataMatricula) {
-		this.dataMatricula = dataMatricula;
+	public void setDataDeInicio(Date dataDeInicio) {
+		this.dataDeInicio = dataDeInicio;
 	}
 
-	public Aluno getAluno() {
-		return aluno;
+	public Integer getVagas() {
+		return vagas;
 	}
 
-	public void setAluno(Aluno aluno) {
-		this.aluno = aluno;
+	public void setVagas(Integer vagas) {
+		this.vagas = vagas;
 	}
 
-	public Avaliacao getAvaliacao() {
-		return avaliacao;
+	public Matricula getMatricula() {
+		return matricula;
 	}
 
-	public void setAvaliacao(Avaliacao avaliacao) {
-		this.avaliacao = avaliacao;
-	}
-
-	public Turma getTurma() {
-		return turma;
-	}
-
-	public void setTurma(Turma turma) {
-		this.turma = turma;
+	public void setMatricula(Matricula matricula) {
+		this.matricula = matricula;
 	}
 
 	@Override
@@ -89,7 +76,7 @@ public class Matricula {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Matricula other = (Matricula) obj;
+		Turma other = (Turma) obj;
 		return Objects.equals(id, other.id);
 	}
 	
