@@ -1,6 +1,5 @@
 package com.sceapi.model;
 
-import java.util.Date;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -10,28 +9,26 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 
 @Entity
-public class Turma {
+public class Curso {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Double id;
 	
 	@Column(nullable = false)
-	private Date dataDeInicio;
+	private String nome;
 	
 	@Column(nullable = false)
-	private Integer vagas;
+	private int cargaHoraria;
+	
+	@Column(nullable = false)
+	private Double valor;
 	
 	@ManyToOne
 	@JoinColumn(nullable = false)
-	private Matricula matricula;
-	
-	@OneToOne
-	@JoinColumn(nullable = false)
-	private Curso curso;
+	private Turma turma;
 
 	public Double getId() {
 		return id;
@@ -41,36 +38,36 @@ public class Turma {
 		this.id = id;
 	}
 
-	public Date getDataDeInicio() {
-		return dataDeInicio;
+	public String getNome() {
+		return nome;
 	}
 
-	public void setDataDeInicio(Date dataDeInicio) {
-		this.dataDeInicio = dataDeInicio;
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
-	public Integer getVagas() {
-		return vagas;
+	public int getCargaHoraria() {
+		return cargaHoraria;
 	}
 
-	public void setVagas(Integer vagas) {
-		this.vagas = vagas;
+	public void setCargaHoraria(int cargaHoraria) {
+		this.cargaHoraria = cargaHoraria;
 	}
 
-	public Matricula getMatricula() {
-		return matricula;
+	public Double getValor() {
+		return valor;
 	}
 
-	public void setMatricula(Matricula matricula) {
-		this.matricula = matricula;
+	public void setValor(Double valor) {
+		this.valor = valor;
 	}
 
-	public Curso getCurso() {
-		return curso;
+	public Turma getTurma() {
+		return turma;
 	}
 
-	public void setCurso(Curso curso) {
-		this.curso = curso;
+	public void setTurma(Turma turma) {
+		this.turma = turma;
 	}
 
 	@Override
@@ -86,9 +83,8 @@ public class Turma {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Turma other = (Turma) obj;
+		Curso other = (Curso) obj;
 		return Objects.equals(id, other.id);
 	}
-	
 
 }
