@@ -7,8 +7,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 
 @Entity
 public class Curso {
@@ -26,10 +24,6 @@ public class Curso {
 	@Column(nullable = false)
 	private Double valor;
 	
-	@ManyToOne
-	@JoinColumn(nullable = false)
-	private Turma turma;
-
 	public Double getId() {
 		return id;
 	}
@@ -60,14 +54,6 @@ public class Curso {
 
 	public void setValor(Double valor) {
 		this.valor = valor;
-	}
-
-	public Turma getTurma() {
-		return turma;
-	}
-
-	public void setTurma(Turma turma) {
-		this.turma = turma;
 	}
 
 	@Override

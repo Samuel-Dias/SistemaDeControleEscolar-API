@@ -8,8 +8,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 @Entity
@@ -19,20 +17,14 @@ public class Matricula {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Double id;
 	
-	@Column(nullable = false)
+	@Column //(nullable = false)
 	private Date dataMatricula;
 	
-	@OneToOne
-	@JoinColumn(nullable = false)
-	private Aluno aluno;
+	@Column(nullable = false)
+	private Integer prestacoesPagamento;
 	
-	@ManyToOne
-	@JoinColumn(nullable = false)
-	private Avaliacao avaliacao;
-	
-	@OneToOne
-	@JoinColumn(nullable = false)
-	private Turma turma;
+	@OneToOne(mappedBy = "matricula")
+    private Aluno aluno;
 
 	public Double getId() {
 		return id;
@@ -50,28 +42,20 @@ public class Matricula {
 		this.dataMatricula = dataMatricula;
 	}
 
+	public Integer getPrestacoesPagamento() {
+		return prestacoesPagamento;
+	}
+
+	public void setPrestacoesPagamento(Integer prestacoesPagamento) {
+		this.prestacoesPagamento = prestacoesPagamento;
+	}
+
 	public Aluno getAluno() {
 		return aluno;
 	}
 
 	public void setAluno(Aluno aluno) {
 		this.aluno = aluno;
-	}
-
-	public Avaliacao getAvaliacao() {
-		return avaliacao;
-	}
-
-	public void setAvaliacao(Avaliacao avaliacao) {
-		this.avaliacao = avaliacao;
-	}
-
-	public Turma getTurma() {
-		return turma;
-	}
-
-	public void setTurma(Turma turma) {
-		this.turma = turma;
 	}
 
 	@Override

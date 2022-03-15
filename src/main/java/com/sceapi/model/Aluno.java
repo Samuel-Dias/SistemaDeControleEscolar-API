@@ -1,6 +1,7 @@
 package com.sceapi.model;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -9,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 @Entity
@@ -30,6 +32,10 @@ public class Aluno {
 	@OneToOne
 	@JoinColumn(nullable = false)
 	private Matricula matricula;
+	
+	@OneToMany
+	@JoinColumn(name="aluno_id")
+	private List<Avaliacao> avaliacao;
 	
 	public Double getId() {
 		return id;
@@ -63,6 +69,12 @@ public class Aluno {
 		this.matricula = matricula;
 	}
 	
+	public List<Avaliacao> getAvaliacao() {
+		return avaliacao;
+	}
+	public void setAvaliacao(List<Avaliacao> avaliacao) {
+		this.avaliacao = avaliacao;
+	}
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
@@ -76,8 +88,8 @@ public class Aluno {
 		if (getClass() != obj.getClass())
 			return false;
 		Aluno other = (Aluno) obj;
-		return Objects.equals(id, other.id);
-	}
+		return Objects.equals(id, other.id); 
+	} 
 	
 
 }

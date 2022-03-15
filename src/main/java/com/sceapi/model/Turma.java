@@ -1,6 +1,7 @@
 package com.sceapi.model;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -10,7 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Turma {
@@ -26,12 +27,12 @@ public class Turma {
 	private Integer vagas;
 	
 	@ManyToOne
-	@JoinColumn(nullable = false)
-	private Matricula matricula;
-	
-	@OneToOne
-	@JoinColumn(nullable = false)
+	@JoinColumn
 	private Curso curso;
+	
+	@OneToMany
+	@JoinColumn
+	private List<Matricula> matricula;
 
 	public Double getId() {
 		return id;
@@ -57,20 +58,20 @@ public class Turma {
 		this.vagas = vagas;
 	}
 
-	public Matricula getMatricula() {
-		return matricula;
-	}
-
-	public void setMatricula(Matricula matricula) {
-		this.matricula = matricula;
-	}
-
 	public Curso getCurso() {
 		return curso;
 	}
 
 	public void setCurso(Curso curso) {
 		this.curso = curso;
+	}
+
+	public List<Matricula> getMatricula() {
+		return matricula;
+	}
+
+	public void setMatricula(List<Matricula> matricula) {
+		this.matricula = matricula;
 	}
 
 	@Override
