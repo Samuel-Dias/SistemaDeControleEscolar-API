@@ -18,28 +18,28 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.sceapi.model.Aluno;
-import com.sceapi.repository.AlunoRepository;
+import com.sceapi.model.Avaliacao;
+import com.sceapi.repository.AvaliacaoRepository;
 
 @RestController
-@RequestMapping(value = "/alunos")
-public class AlunoController {
+@RequestMapping(value = "/avaliacaos")
+public class AvaliacaoController {
 	
 	@Autowired
-	private AlunoRepository alunoRepository;
+	private AvaliacaoRepository avaliacaoRepository;
 	
 	@GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-	public List<Aluno> listar() {
-		return alunoRepository.listar();
+	public List<Avaliacao> listar() {
+		return avaliacaoRepository.listar();
 	}
 	
-	@GetMapping("/{alunoId}")
-	public ResponseEntity<Aluno> buscar(@PathVariable Long alunoId) {
+	@GetMapping("/{avaliacaoId}")
+	public ResponseEntity<Avaliacao> buscar(@PathVariable Long avaliacaoId) {
 		
-		Aluno aluno = alunoRepository.buscar(alunoId);
+		Avaliacao avaliacao = avaliacaoRepository.buscar(avaliacaoId);
 		
-		if (aluno != null) {
-			return ResponseEntity.ok(aluno);
+		if (avaliacao != null) {
+			return ResponseEntity.ok(avaliacao);
 		}
 		
 		return ResponseEntity.notFound().build();
@@ -47,30 +47,30 @@ public class AlunoController {
 	
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
-	public Aluno adicionar(@RequestBody Aluno aluno) {
-		return alunoRepository.salvar(aluno);
+	public Avaliacao adicionar(@RequestBody Avaliacao avaliacao) {
+		return avaliacaoRepository.salvar(avaliacao);
 	}
 	
-	@PutMapping("/{alunoId}")
-	public ResponseEntity<Aluno> atualizar(@PathVariable Long alunoId, @RequestBody Aluno aluno) {
-		Aluno alunoAtual = alunoRepository.buscar(alunoId);
+	@PutMapping("/{avaliacaoId}")
+	public ResponseEntity<Avaliacao> atualizar(@PathVariable Long avaliacaoId, @RequestBody Avaliacao avaliacao) {
+		Avaliacao avaliacaoAtual = avaliacaoRepository.buscar(avaliacaoId);
 		
-		if (alunoAtual != null) {
-			BeanUtils.copyProperties(aluno, alunoAtual, "id");
-			alunoAtual = alunoRepository.salvar(alunoAtual);
-			return ResponseEntity.ok(alunoAtual);
+		if (avaliacaoAtual != null) {
+			BeanUtils.copyProperties(avaliacao, avaliacaoAtual, "id");
+			avaliacaoAtual = avaliacaoRepository.salvar(avaliacaoAtual);
+			return ResponseEntity.ok(avaliacaoAtual);
 		}
 		
 		return ResponseEntity.notFound().build();
 	}
 	
-	@DeleteMapping("/{alunoId}")
-	public ResponseEntity<Aluno> remover(@PathVariable Long alunoId) {
+	@DeleteMapping("/{avaliacaoId}")
+	public ResponseEntity<Avaliacao> remover(@PathVariable Long avaliacaoId) {
 		try {
-			Aluno aluno = alunoRepository.buscar(alunoId);
+			Avaliacao avaliacao = avaliacaoRepository.buscar(avaliacaoId);
 			
-			if (aluno != null) {
-				alunoRepository.remover(aluno);
+			if (avaliacao != null) {
+				avaliacaoRepository.remover(avaliacao);
 				
 				return ResponseEntity.noContent().build();
 			}

@@ -18,28 +18,28 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.sceapi.model.Aluno;
-import com.sceapi.repository.AlunoRepository;
+import com.sceapi.model.Turma;
+import com.sceapi.repository.TurmaRepository;
 
 @RestController
-@RequestMapping(value = "/alunos")
-public class AlunoController {
+@RequestMapping(value = "/turmas")
+public class TurmaController {
 	
 	@Autowired
-	private AlunoRepository alunoRepository;
+	private TurmaRepository turmaRepository;
 	
 	@GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-	public List<Aluno> listar() {
-		return alunoRepository.listar();
+	public List<Turma> listar() {
+		return turmaRepository.listar();
 	}
 	
-	@GetMapping("/{alunoId}")
-	public ResponseEntity<Aluno> buscar(@PathVariable Long alunoId) {
+	@GetMapping("/{turmaId}")
+	public ResponseEntity<Turma> buscar(@PathVariable Long turmaId) {
 		
-		Aluno aluno = alunoRepository.buscar(alunoId);
+		Turma turma = turmaRepository.buscar(turmaId);
 		
-		if (aluno != null) {
-			return ResponseEntity.ok(aluno);
+		if (turma != null) {
+			return ResponseEntity.ok(turma);
 		}
 		
 		return ResponseEntity.notFound().build();
@@ -47,30 +47,30 @@ public class AlunoController {
 	
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
-	public Aluno adicionar(@RequestBody Aluno aluno) {
-		return alunoRepository.salvar(aluno);
+	public Turma adicionar(@RequestBody Turma turma) {
+		return turmaRepository.salvar(turma);
 	}
 	
-	@PutMapping("/{alunoId}")
-	public ResponseEntity<Aluno> atualizar(@PathVariable Long alunoId, @RequestBody Aluno aluno) {
-		Aluno alunoAtual = alunoRepository.buscar(alunoId);
+	@PutMapping("/{turmaId}")
+	public ResponseEntity<Turma> atualizar(@PathVariable Long turmaId, @RequestBody Turma turma) {
+		Turma turmaAtual = turmaRepository.buscar(turmaId);
 		
-		if (alunoAtual != null) {
-			BeanUtils.copyProperties(aluno, alunoAtual, "id");
-			alunoAtual = alunoRepository.salvar(alunoAtual);
-			return ResponseEntity.ok(alunoAtual);
+		if (turmaAtual != null) {
+			BeanUtils.copyProperties(turma, turmaAtual, "id");
+			turmaAtual = turmaRepository.salvar(turmaAtual);
+			return ResponseEntity.ok(turmaAtual);
 		}
 		
 		return ResponseEntity.notFound().build();
 	}
 	
-	@DeleteMapping("/{alunoId}")
-	public ResponseEntity<Aluno> remover(@PathVariable Long alunoId) {
+	@DeleteMapping("/{turmaId}")
+	public ResponseEntity<Turma> remover(@PathVariable Long turmaId) {
 		try {
-			Aluno aluno = alunoRepository.buscar(alunoId);
+			Turma turma = turmaRepository.buscar(turmaId);
 			
-			if (aluno != null) {
-				alunoRepository.remover(aluno);
+			if (turma != null) {
+				turmaRepository.remover(turma);
 				
 				return ResponseEntity.noContent().build();
 			}

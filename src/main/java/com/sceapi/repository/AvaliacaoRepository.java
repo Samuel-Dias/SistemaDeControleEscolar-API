@@ -1,11 +1,15 @@
 package com.sceapi.repository;
 
-import org.springframework.data.jpa.repository.JpaRepository;
+import java.util.List;
 import org.springframework.stereotype.Repository;
-
 import com.sceapi.model.Avaliacao;
-
+//extends JpaRepository<Avaliacao, Long>
 @Repository
-public interface AvaliacaoRepository extends JpaRepository<Avaliacao, Long> {
+public interface AvaliacaoRepository {
+	
+	List<Avaliacao> listar();
+	Avaliacao buscar(Long id);
+	Avaliacao salvar(Avaliacao avaliacao);
+	void remover(Avaliacao avaliacao);
 
 }

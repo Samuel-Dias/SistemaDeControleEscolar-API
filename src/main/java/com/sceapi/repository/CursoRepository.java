@@ -1,11 +1,15 @@
 package com.sceapi.repository;
 
-import org.springframework.data.jpa.repository.JpaRepository;
+import java.util.List;
 import org.springframework.stereotype.Repository;
-
 import com.sceapi.model.Curso;
-
+//extends JpaRepository<Curso, Long>
 @Repository
-public interface CursoRepository extends JpaRepository<Curso, Long> {
+public interface CursoRepository {
+	
+	List<Curso> listar();
+	Curso buscar(Long id);
+	Curso salvar(Curso curso);
+	void remover(Curso curso);
 
 }

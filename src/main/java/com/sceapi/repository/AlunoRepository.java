@@ -1,10 +1,7 @@
 package com.sceapi.repository;
 
 import java.util.List;
-
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-
 import com.sceapi.model.Aluno;
 //extends JpaRepository<Aluno, Long>
 

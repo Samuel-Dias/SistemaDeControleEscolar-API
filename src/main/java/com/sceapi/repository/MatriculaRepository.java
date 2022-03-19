@@ -1,11 +1,15 @@
 package com.sceapi.repository; 
 
-import org.springframework.data.jpa.repository.JpaRepository;
+import java.util.List;
 import org.springframework.stereotype.Repository;
-
 import com.sceapi.model.Matricula;
-
+//extends JpaRepository<Matricula, Long>
 @Repository
-public interface MatriculaRepository extends JpaRepository<Matricula, Long> {
+public interface MatriculaRepository {
+	
+	List<Matricula> listar();
+	Matricula buscar(Long id);
+	Matricula salvar(Matricula matricula);
+	void remover(Matricula matricula);
 
 }
