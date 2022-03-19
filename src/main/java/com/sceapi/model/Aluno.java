@@ -18,29 +18,29 @@ public class Aluno {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Double id;
+	private Long id;
 	
-	@Column(nullable = false)
+	@Column//(nullable = false)
 	private String cpf;
 	
-	@Column(nullable = false)
+	@Column//(nullable = false)
 	private String nome;
 	
-	@Column(nullable = false)
+	@Column//(nullable = false)
 	private Date dataNascimento;
 	
 	@OneToOne
-	@JoinColumn(nullable = false)
+	@JoinColumn//(nullable = false)
 	private Matricula matricula;
 	
 	@OneToMany
 	@JoinColumn(name="aluno_id")
 	private List<Avaliacao> avaliacao;
 	
-	public Double getId() {
+	public Long getId() {
 		return id;
 	}
-	public void setId(Double id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 	public String getCpf() {

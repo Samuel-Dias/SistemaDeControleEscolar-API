@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.sceapi.model.Matricula;
 
 @Repository
-public interface MatriculaRepository extends JpaRepository<Matricula, Double> {
+public interface MatriculaRepository extends JpaRepository<Matricula, Long> {
 
 }

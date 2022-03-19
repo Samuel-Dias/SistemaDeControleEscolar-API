@@ -4,19 +4,26 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.sceapi.model.Aluno;
-//import com.sceapi.repository.AlunoRepository;
-//import com.sceapi.repository.MatriculaRepository;
-/*
+import com.sceapi.repository.AlunoRepository;
+
 @Service
 public class CadastroAlunoService {
 	
 	@Autowired
 	private AlunoRepository alunoRepository;
+	/*
+	public Aluno buscar(Long alunoId) {
+		Aluno aluno = alunoRepository.getById(alunoId);
+		return aluno;
+	}
 	
-	@Autowired
-	private MatriculaRepository matriculaRepository;
+	public Aluno salvar(Aluno aluno) {
+		aluno = alunoRepository.save(aluno);
+		return aluno;
+	}
 	
-	
-
-}
+	public void remover(Long alunoId) {
+		alunoRepository.deleteById(alunoId);
+	}
 */
+}

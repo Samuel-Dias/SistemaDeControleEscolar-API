@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.sceapi.model.Curso;
 
 @Repository
-public interface CursoRepository extends JpaRepository<Curso, Double> {
+public interface CursoRepository extends JpaRepository<Curso, Long> {
 
 }

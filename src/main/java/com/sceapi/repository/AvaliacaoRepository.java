@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.sceapi.model.Avaliacao;
 
 @Repository
-public interface AvaliacaoRepository extends JpaRepository<Avaliacao, Double> {
+public interface AvaliacaoRepository extends JpaRepository<Avaliacao, Long> {
 
 }

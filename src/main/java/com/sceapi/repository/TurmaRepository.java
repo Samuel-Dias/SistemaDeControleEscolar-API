@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.sceapi.model.Turma;
 
 @Repository
-public interface TurmaRepository extends JpaRepository<Turma, Double> {
+public interface TurmaRepository extends JpaRepository<Turma, Long> {
 
 }

@@ -14,7 +14,7 @@ public class Avaliacao {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Double id;
+	private Long id;
 	
 	@Column(nullable = false)
 	private Double nota;
@@ -22,11 +22,11 @@ public class Avaliacao {
 	@Column(nullable = false)
 	private Date data;
 	
-	public Double getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(Double id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
