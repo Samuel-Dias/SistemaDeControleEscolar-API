@@ -18,8 +18,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.sceapi.exception.CampoNomeNaoPodeSerNuloException;
 import com.sceapi.model.Aluno;
 import com.sceapi.repository.AlunoRepository;
+import com.sceapi.service.CadastroAlunoService;
 
 @RestController
 @RequestMapping(value = "/alunos")
@@ -27,6 +29,9 @@ public class AlunoController {
 	
 	@Autowired
 	private AlunoRepository alunoRepository;
+	
+	@Autowired
+	private CadastroAlunoService alunoService;
 	
 	@GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
 	public List<Aluno> listar() {
@@ -46,9 +51,14 @@ public class AlunoController {
 	}
 	
 	@PostMapping
-	@ResponseStatus(HttpStatus.CREATED)
-	public Aluno adicionar(@RequestBody Aluno aluno) {
-		return alunoRepository.salvar(aluno);
+	@ResponseStatus //(HttpStatus.CREATED)
+	public ResponseEntity<?> adicionar(@RequestBody Aluno aluno) {
+		try {
+			aluno = alunoService.salvar(aluno);
+			return ResponseEntity.status(201).body(aluno);
+		} catch (CampoNomeNaoPodeSerNuloException e) {
+			return ResponseEntity.badRequest().body(e.getMessage());
+		}
 	}
 	
 	@PutMapping("/{alunoId}")
