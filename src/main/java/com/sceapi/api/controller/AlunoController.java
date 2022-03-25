@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.sceapi.exception.CampoCPFNaoPodeSerNuloException;
+import com.sceapi.exception.CampoDataNascimentoNaoPodeSerNuloException;
 import com.sceapi.exception.CampoNomeNaoPodeSerNuloException;
 import com.sceapi.model.Aluno;
 import com.sceapi.repository.AlunoRepository;
@@ -56,9 +58,10 @@ public class AlunoController {
 		try {
 			aluno = alunoService.salvar(aluno);
 			return ResponseEntity.status(201).body(aluno);
-		} catch (CampoNomeNaoPodeSerNuloException e) {
+		} catch (CampoNomeNaoPodeSerNuloException | CampoDataNascimentoNaoPodeSerNuloException | CampoCPFNaoPodeSerNuloException e) {
 			return ResponseEntity.badRequest().body(e.getMessage());
-		}
+		} 
+		
 	}
 	
 	@PutMapping("/{alunoId}")

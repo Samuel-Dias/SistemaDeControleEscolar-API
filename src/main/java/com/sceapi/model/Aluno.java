@@ -20,13 +20,13 @@ public class Aluno {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@Column //(nullable = false)
+	@Column(nullable = false)
 	private String cpf;
 	
-	@Column //(nullable = false)
+	@Column(nullable = false)
 	private String nome;
 	
-	@Column //(nullable = false)
+	@Column(nullable = false)
 	private Date dataNascimento;
 	
 	@OneToOne
